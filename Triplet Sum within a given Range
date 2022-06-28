@@ -1,1 +1,38 @@
 Problem Link--->https://practice.geeksforgeeks.org/problems/triplets-with-sum-with-given-range/1/
+
+#User function Template for python3
+def findCount(nums,target):
+    count=0
+    for i in range(len(nums)):
+        low,high=i+1,len(nums)-1
+        while low<high:
+            if nums[i]+nums[high]+nums[low]>target:
+                high-=1
+            else:
+                count+=high-low
+                low+=1
+    return count
+class Solution:
+    def countTriplets(self, Arr, N, L, R):
+        # code here
+        Arr.sort()
+        res=findCount(Arr,R)-findCount(Arr,L-1)
+        return res
+        
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range (t):
+        N = int(input())
+        Arr = input().split()
+        for itr in range(N):
+            Arr[itr] = int(Arr[itr])
+        L,R = input().split()
+        L=int(L)
+        R=int(R)
+        ob = Solution()
+        print(ob.countTriplets(Arr, N, L, R))
+# } Driver Code Ends
