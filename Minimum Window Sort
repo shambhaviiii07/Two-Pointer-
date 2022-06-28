@@ -1,1 +1,27 @@
 Problem Link--->https://www.coursehero.com/file/90121454/Problem-Challenge-3-Minimum-Window-Sort-mediumpy/
+
+array=list(map(int,input().split()))
+for s in range(len(array)-1):
+    if array[s]>array[s+1]:
+        break
+if s==len(array)-2:
+    print(0)
+else:
+    for e in range(len(array)-1,0,-1):
+        if array[e]<array[e-1]:
+            break
+    maximum=array[e]
+    minimum=array[s]
+    for i in range(s+1,e):
+        maximum=max(maximum,array[i])
+        minimum=min(minimum,array[i])
+    for i in range(s):
+        if array[i]>minimum:
+            s=i
+            break
+    for i in range(e+1,len(array)):
+        if array[i]<maximum:
+            e=i
+            break
+    print(e-s+1)
+        
