@@ -1,0 +1,22 @@
+Problem Link--->https://practice.geeksforgeeks.org/problems/find-the-element-that-appears-once-in-sorted-array0624/1/?page=2&company[]=Amazon&company[]=Atlassian&curated[]=1&sortBy=submissions#
+
+class Solution:
+    def findOnce(self,arr : list, n : int):
+        # First occurence is at an even index before the non-repeating element and
+        # odd after the non repeating element. So we do binary search and update the 
+        # values accordingly
+        start,end=0,n-1
+        while start<=end:
+            mid=start+(end-start)//2
+            if mid!=0 and arr[mid]==arr[mid-1]:
+                if mid%2==1:
+                    start=mid+1
+                else:
+                    end=mid-1
+            elif mid!=n-1 and arr[mid]==arr[mid+1]:
+                if mid%2:
+                    end=mid-1
+                else:
+                    start=mid+1
+            else:
+                return arr[mid]
